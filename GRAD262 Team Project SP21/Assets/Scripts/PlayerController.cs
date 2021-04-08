@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 2.0f;
-    public float jumpForce = 250.0f;
-    public bool isGrounded = false;
-    public LayerMask groundLayer;
-    public Transform groundCheck;
+    [SerializeField] private float moveSpeed = 2.0f;
+    [SerializeField] private float jumpForce = 250.0f;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Transform groundCheck;
 
-    private float vx, vy;
     private Rigidbody2D rbody;
     private Animator animator;
+    private float vx;
+    [SerializeField] private bool isGrounded = false;
 
     private void Awake()
     {
@@ -22,24 +23,22 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, groundLayer);
+        Walk();
+        Jump();
+    }
+    void LateUpdate()
+    {
+        WalkOrientation();
+    }
 
+    void Walk()
+    {
         vx = Input.GetAxisRaw("Horizontal");
         rbody.velocity = new Vector2(vx * moveSpeed, rbody.velocity.y);
         animator.SetBool("Walk", vx != 0);
-
-        if (isGrounded && Input.GetButtonDown("Jump"))
-        {
-            rbody.AddForce(new Vector2(0, jumpForce));
-            animator.SetBool("Jump", true);
-            isGrounded = false;
-        }
-        
-        if (animator.GetBool("Jump") && isGrounded)
-            animator.SetBool("Jump", false);
     }
 
-    void LateUpdate()
+    void WalkOrientation()
     {
         if (vx == 0)
             return;
@@ -51,6 +50,21 @@ public class PlayerController : MonoBehaviour
             localScale.x *= -1;
 
         transform.localScale = localScale;
+    }
+
+    void Jump()
+    {
+        isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, groundLayer);
+
+        if (isGrounded && Input.GetButtonDown("Jump"))
+        {
+            rbody.AddForce(new Vector2(0, jumpForce));
+            animator.SetBool("Jump", true);
+            isGrounded = false;
+        }
+
+        if (animator.GetBool("Jump") && isGrounded)
+            animator.SetBool("Jump", false);
     }
 
 }
