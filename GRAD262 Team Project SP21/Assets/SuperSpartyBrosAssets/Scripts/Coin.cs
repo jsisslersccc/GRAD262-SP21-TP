@@ -11,7 +11,7 @@ public class Coin : MonoBehaviour {
 	// then take the coin
 	void OnTriggerEnter2D (Collider2D other)
 	{
-		if ((other.tag == "Player" ) && (!taken) && (other.gameObject.GetComponent<CharacterController2D>().playerCanMove))
+		if ((other.tag == "Player" ) && (!taken))
 		{
 			// mark as taken so doesn't get taken multiple times
 			taken=true;
@@ -23,7 +23,7 @@ public class Coin : MonoBehaviour {
 			}
 
 			// do the player collect coin thing
-			other.gameObject.GetComponent<CharacterController2D>().CollectCoin(coinValue);
+			Manager.gm.CollectCoin(coinValue);
 
 			// destroy the coin
 			DestroyObject(this.gameObject);
