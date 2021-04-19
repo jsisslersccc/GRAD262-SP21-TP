@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5425035242861751102}
   - component: {fileID: 4703625303206249054}
   - component: {fileID: 3803880179574540065}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: WallSensor_R1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 8309176255856154750}
   - component: {fileID: 4462523498398770929}
   - component: {fileID: 7628622259847096296}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: WallSensor_L1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 2138415775296674154}
   - component: {fileID: 8771097920191341270}
   - component: {fileID: 5943875936371665347}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: WallSensor_R2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 6580216603039891534}
   - component: {fileID: 7319268820848586064}
   - component: {fileID: 2136112946234173601}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: WallSensor_L2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,8 +254,6 @@ GameObject:
   - component: {fileID: 840727602534990248}
   - component: {fileID: 664265531896001931}
   - component: {fileID: 6673206467081836741}
-  - component: {fileID: 2202566834965948453}
-  - component: {fileID: 2202566834965948452}
   - component: {fileID: 2202566834965948454}
   m_Layer: 9
   m_Name: EnemyKnight
@@ -420,39 +418,6 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}
---- !u!58 &2202566834965948453
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2338256465857394845}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.859375}
-  serializedVersion: 2
-  m_Radius: 1.5625
---- !u!114 &2202566834965948452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2338256465857394845}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f5034bc83802944c9bca57c55e08978, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_speed: 4
-  m_jumpForce: 7.5
-  m_rollForce: 6
-  m_noBlood: 0
-  m_slideDust: {fileID: 0}
 --- !u!114 &2202566834965948454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,11 +430,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f33136b2621d2ae439681afc19677999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   m_speed: 4
   m_jumpForce: 7.5
   m_rollForce: 6
   m_noBlood: 0
   m_slideDust: {fileID: 0}
+  m_secondsBetweenDirectionChange: 10
+  m_wanderSpeed: 0.5
+  m_attackDistance: 5
 --- !u!1 &8519811344312286478
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,7 +450,7 @@ GameObject:
   - component: {fileID: 6885686782666333525}
   - component: {fileID: 8993076231692304594}
   - component: {fileID: 7688223429201105018}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GroundSensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

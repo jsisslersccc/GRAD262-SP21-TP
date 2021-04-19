@@ -1,9 +1,11 @@
 using UnityEngine;
 using System.Collections;
+using System;
+using Cinemachine;
 
 public class EnemyKnight : MonoBehaviour
 {
-
+    [SerializeField] HeroKnight player;
     [SerializeField] float m_speed = 4.0f;
     [SerializeField] float m_jumpForce = 7.5f;
     [SerializeField] float m_rollForce = 6.0f;
@@ -27,8 +29,14 @@ public class EnemyKnight : MonoBehaviour
     private float m_timeSinceDirectionChange = 0;
     private float m_directionSign = 1;
     public float m_secondsBetweenDirectionChange = 10f;
-    public float m_wanderSpeed = .5f; 
+    public float m_wanderSpeed = .5f;
+    public float m_attackDistance = 5f;
+    public CinemachineVirtualCamera myCinemachine;
 
+    private void Awake()
+    {
+        player = FindObjectOfType<HeroKnight>();
+    }
 
     // Use this for initialization
     void Start()
@@ -68,6 +76,14 @@ public class EnemyKnight : MonoBehaviour
         {
             m_directionSign *= -1;
             m_timeSinceDirectionChange = 0;
+        }
+
+        //Debug.Log("Distance: " + Vector2.Distance(transform.position, player.transform.position));
+
+        // Move in direction of Player if within attacking distance.
+        if (player && Vector2.Distance(transform.position, player.transform.position) <= m_attackDistance)
+        {
+            m_directionSign = transform.position.x < player.transform.position.x ? 1 : -1;
         }
 
         // -- Handle input and movement --
@@ -202,4 +218,23 @@ public class EnemyKnight : MonoBehaviour
             dust.transform.localScale = new Vector3(m_facingDirection, 1, 1);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            m_animator.SetTrigger("Attack1");
+            StartCoroutine(KillPlayer());
+        }
+    }
+
+    private IEnumerator KillPlayer()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Destroy(player.gameObject);
+        m_wanderSpeed = 0;
+        m_animator.ResetTrigger("Attack1");
+        myCinemachine.m_Follow = transform;
+    }
+
 }
