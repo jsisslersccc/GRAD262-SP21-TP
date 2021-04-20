@@ -23,7 +23,8 @@ public class SlimeGelResource : Resource
     {
         gameObject.transform.position = enemy.transform.position;
         Destroy(enemy.gameObject);
-        yield return new WaitForSeconds(5f);
+        GetComponent<Animator>().SetTrigger("SlimeEnemy");
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 
