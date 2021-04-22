@@ -230,8 +230,9 @@ public class EnemyKnight : MonoBehaviour
 
     private IEnumerator KillPlayer()
     {
+        player.GetComponent<Animator>().SetTrigger("Death");
         yield return new WaitForSeconds(0.5f);
-        Destroy(player.gameObject);
+        //Destroy(player.gameObject);
         m_wanderSpeed = 0;
         m_animator.ResetTrigger("Attack1");
         myCinemachine.m_Follow = transform;
