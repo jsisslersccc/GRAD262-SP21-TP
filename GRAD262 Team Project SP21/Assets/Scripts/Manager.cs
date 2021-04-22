@@ -10,12 +10,14 @@ public class Manager : MonoBehaviour
     public int hitPoints;
     public int coins;
     public int lives;
+    public int hearts;
 
     public Text UICoins;
     public Text UIHealth;
     void Start()
     {
-        UICoins.text = "10";
+        UICoins.text = "0";
+        UIHealth.text = "1";
         gm = this;
     }
 
@@ -24,13 +26,13 @@ public class Manager : MonoBehaviour
     {
 
     }
-    void AddPoints(int amount)
+    void AddCoins(int amount)
     {
         // increase score
         coins += amount;
 
         // update UI
-        UICoins.text = "$" + coins.ToString();
+        UICoins.text = coins.ToString();
 
     }
     public void CollectCoin(int amount)
@@ -38,6 +40,23 @@ public class Manager : MonoBehaviour
         //PlaySound(coinSFX);
 
         if (gm) // add the points through the game manager, if it is available
-            gm.AddPoints(amount);
+            gm.AddCoins(amount);
+    }
+
+    void AddHearts(int amount)
+    {
+        // increase score
+        hearts += amount;
+
+        // update UI
+        UIHealth.text = hearts.ToString();
+
+    }
+    public void CollectHeart(int amount)
+    {
+        //PlaySound(coinSFX);
+
+        if (gm) // add the points through the game manager, if it is available
+            gm.AddHearts(amount);
     }
 }
