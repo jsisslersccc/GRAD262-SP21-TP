@@ -19,6 +19,7 @@ public class EnemyKnight : MonoBehaviour
     public bool inAttackVicinity = false;
     public float pursueVicinityThreshold = 5f;
     public bool inPursueVicinity = false;
+    public bool playerBetweenWaypoints = false;
 
     private Animator animator;
     private Rigidbody2D body;
@@ -34,7 +35,13 @@ public class EnemyKnight : MonoBehaviour
 
     void Update()
     {
-        inAttackVicinity = Vector3.Distance(player.transform.position, transform.position) < attackVicinityThreshold;
+        playerBetweenWaypoints = waypoints.Length == 2 
+            && waypoints[0].transform.position.x < waypoints[1].transform.position.x
+            && waypoints[0].transform.position.x < player.transform.position.x
+            && player.transform.position.x < waypoints[1].transform.position.x;
+
+        inAttackVicinity = playerBetweenWaypoints && Vector3.Distance(player.transform.position, transform.position) < attackVicinityThreshold;
+        inPursueVicinity = playerBetweenWaypoints && Vector3.Distance(player.transform.position, transform.position) < pursueVicinityThreshold;
 
         //Check if character just landed on the ground
         if (!isGrounded && groundSensor.State())
@@ -51,7 +58,28 @@ public class EnemyKnight : MonoBehaviour
         }
 
         if (isGrounded)
-            Move();
+        {
+            if (inAttackVicinity)
+                Attack();
+            else if (inPursueVicinity)
+                Pursue();
+            else
+                Move();
+        }
+    }
+
+    void Attack()
+    {
+        body.velocity = new Vector2(0, 0);
+        animator.SetInteger("AnimState", 0);
+    }
+
+    void Pursue()
+    {
+        vx = player.transform.position.x - transform.position.x;
+        Flip(vx);
+        animator.SetInteger("AnimState", 1);
+        body.velocity = new Vector2(transform.localScale.x * moveSpeed, body.velocity.y);
     }
         
     void Move()
@@ -97,14 +125,12 @@ public class EnemyKnight : MonoBehaviour
                 // Set the enemy's velocity to moveSpeed in the x direction.
                 body.velocity = new Vector2(transform.localScale.x * moveSpeed, body.velocity.y);
             }
-
         }
     }
 
     // flip the enemy to face torward the direction he is moving in
     void Flip(float _vx)
     {
-
         // get the current scale
         Vector3 localScale = transform.localScale;
 

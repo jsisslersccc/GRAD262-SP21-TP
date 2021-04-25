@@ -23319,36 +23319,6 @@ PrefabInstance:
       objectReference: {fileID: 1620338060}
     - target: {fileID: 2202566834965948454, guid: 1a6d9c9e4167e4841af7d0174168dd32,
         type: 3}
-      propertyPath: isMoving
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2202566834965948454, guid: 1a6d9c9e4167e4841af7d0174168dd32,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2202566834965948454, guid: 1a6d9c9e4167e4841af7d0174168dd32,
-        type: 3}
-      propertyPath: myCinemachine
-      value: 
-      objectReference: {fileID: 1539959325}
-    - target: {fileID: 2202566834965948454, guid: 1a6d9c9e4167e4841af7d0174168dd32,
-        type: 3}
-      propertyPath: waitAtWaypointTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2202566834965948454, guid: 1a6d9c9e4167e4841af7d0174168dd32,
-        type: 3}
-      propertyPath: waypoints.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2202566834965948454, guid: 1a6d9c9e4167e4841af7d0174168dd32,
-        type: 3}
-      propertyPath: playerVicinityThreshold
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2202566834965948454, guid: 1a6d9c9e4167e4841af7d0174168dd32,
-        type: 3}
       propertyPath: waypoints.Array.data[0]
       value: 
       objectReference: {fileID: 835346485}

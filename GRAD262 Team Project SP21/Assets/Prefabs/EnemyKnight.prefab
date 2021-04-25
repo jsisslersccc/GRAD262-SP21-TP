@@ -431,14 +431,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  m_speed: 4
-  m_jumpForce: 7.5
-  m_rollForce: 6
-  m_noBlood: 0
-  m_slideDust: {fileID: 0}
-  m_secondsBetweenDirectionChange: 10
-  m_wanderSpeed: 0.5
-  m_attackDistance: 5
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  waypointIndex: 0
+  loopWaypoints: 1
+  waitAtWaypointTime: 1
+  moveTime: 0
+  moveSpeed: 2
+  isMoving: 1
+  vx: 0
+  isGrounded: 0
+  attackVicinityThreshold: 0.6
+  inAttackVicinity: 0
+  pursueVicinityThreshold: 5
+  inPursueVicinity: 0
+  playerBetweenWaypoints: 0
 --- !u!1 &8519811344312286478
 GameObject:
   m_ObjectHideFlags: 0
