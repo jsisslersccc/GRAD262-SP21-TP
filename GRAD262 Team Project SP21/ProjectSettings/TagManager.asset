@@ -58,3 +58,6 @@ TagManager:
   - name: Player
     uniqueID: 3945475489
     locked: 0
+  - name: HidePlayer
+    uniqueID: 3431599907
+    locked: 0
