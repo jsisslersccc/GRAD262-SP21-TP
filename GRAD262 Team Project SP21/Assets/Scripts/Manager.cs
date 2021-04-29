@@ -11,6 +11,7 @@ public class Manager : MonoBehaviour
     public int coins;
     public int lives;
     public int hearts;
+    public Damageable playerHealth;
 
     public Text UICoins;
     public Text UIHealth;
@@ -24,7 +25,7 @@ public class Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        UIHealth.text = playerHealth.healthPoints.ToString();
     }
     void AddCoins(int amount)
     {
@@ -58,5 +59,22 @@ public class Manager : MonoBehaviour
 
         if (gm) // add the points through the game manager, if it is available
             gm.AddHearts(amount);
+    }
+
+    public bool checkCoins(int amount)
+    {
+        if (coins >= amount)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void withdrawCoin(int amount)
+    {
+        coins -= amount;
     }
 }

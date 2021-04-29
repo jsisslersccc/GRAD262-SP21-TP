@@ -23,6 +23,8 @@ public class HeroKnight : MonoBehaviour {
     private float               m_timeSinceAttack = 0.0f;
     private float               m_delayToIdle = 0.0f;
 
+    public bool attacking = false;
+
 
     // Use this for initialization
     void Start ()
@@ -97,6 +99,7 @@ public class HeroKnight : MonoBehaviour {
         //Attack
         else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
         {
+            attacking = true;
             m_currentAttack++;
 
             // Loop back to one after third attack
@@ -105,7 +108,10 @@ public class HeroKnight : MonoBehaviour {
 
             // Reset Attack combo if time since last attack is too large
             if (m_timeSinceAttack > 1.0f)
+            {
                 m_currentAttack = 1;
+                attacking = false;
+            }
 
             // Call one of three attack animations "Attack1", "Attack2", "Attack3"
             m_animator.SetTrigger("Attack" + m_currentAttack);

@@ -20,8 +20,14 @@ public class Resource : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-            ResourceManager.S.PurchaseResource(this);
+        if (Manager.gm.checkCoins(cost))
+        {
+            if (collision.CompareTag("Player"))
+            {
+                ResourceManager.S.PurchaseResource(this);
+                Manager.gm.withdrawCoin(cost);
+            }
+        }
     }
 
     virtual public bool ActivateResource()

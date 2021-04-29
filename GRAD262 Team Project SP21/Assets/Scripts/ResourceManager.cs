@@ -54,6 +54,7 @@ public class ResourceManager : MonoBehaviour
 
     public void PurchaseResource(Resource resource)
     {
+ 
         // Deactivate the resource in Scene.
         resource.gameObject.SetActive(false);
 

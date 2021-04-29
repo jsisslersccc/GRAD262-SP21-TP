@@ -20,6 +20,7 @@ public class EnemyKnight : MonoBehaviour
     public float pursueVicinityThreshold = 5f;
     public bool inPursueVicinity = false;
     public bool playerBetweenWaypoints = false;
+    public bool playerDead = false;
 
     private Animator animator;
     private Rigidbody2D body;
@@ -39,6 +40,7 @@ public class EnemyKnight : MonoBehaviour
             && waypoints[0].transform.position.x < waypoints[1].transform.position.x
             && waypoints[0].transform.position.x < player.transform.position.x
             && player.transform.position.x < waypoints[1].transform.position.x;
+        playerDead = player.GetComponent<Damageable>().healthPoints <= 0;
 
         inAttackVicinity = playerBetweenWaypoints && Vector3.Distance(player.transform.position, transform.position) < attackVicinityThreshold;
         inPursueVicinity = playerBetweenWaypoints && Vector3.Distance(player.transform.position, transform.position) < pursueVicinityThreshold;
@@ -59,8 +61,13 @@ public class EnemyKnight : MonoBehaviour
 
         if (isGrounded)
         {
-            if (inAttackVicinity)
-                Attack();
+            if (inAttackVicinity && !playerDead)
+            {
+                if (player.attacking)
+                    BeingAttacked();
+                else
+                    StartCoroutine(Attack());
+            }
             else if (inPursueVicinity)
                 Pursue();
             else
@@ -68,10 +75,21 @@ public class EnemyKnight : MonoBehaviour
         }
     }
 
-    void Attack()
+    void BeingAttacked()
+    {
+        GetComponent<Damageable>().takeDamage();
+    }
+
+    IEnumerator Attack()
     {
         body.velocity = new Vector2(0, 0);
         animator.SetInteger("AnimState", 0);
+        yield return new WaitForSeconds(5);
+        if (inAttackVicinity)
+        {
+            animator.SetTrigger("Attack1");
+            player.GetComponent<Damageable>().takeDamage();
+        }
     }
 
     void Pursue()

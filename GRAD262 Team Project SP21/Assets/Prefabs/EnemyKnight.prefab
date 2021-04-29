@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 664265531896001931}
   - component: {fileID: 6673206467081836741}
   - component: {fileID: 2202566834965948454}
+  - component: {fileID: 3636018675040441559}
   m_Layer: 9
   m_Name: EnemyKnight
   m_TagString: Enemy
@@ -271,7 +272,7 @@ Transform:
   m_GameObject: {fileID: 2338256465857394845}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -29.3, y: -8, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6885686782666333525}
   - {fileID: 5425035242861751102}
@@ -442,11 +443,25 @@ MonoBehaviour:
   isMoving: 1
   vx: 0
   isGrounded: 0
-  attackVicinityThreshold: 0.6
+  attackVicinityThreshold: 1
   inAttackVicinity: 0
   pursueVicinityThreshold: 5
   inPursueVicinity: 0
   playerBetweenWaypoints: 0
+  playerDead: 0
+--- !u!114 &3636018675040441559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338256465857394845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41a2047135326bc4e83000dc12f7b10f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 1
 --- !u!1 &8519811344312286478
 GameObject:
   m_ObjectHideFlags: 0
