@@ -26,7 +26,7 @@ public class Coin : MonoBehaviour {
 			Manager.gm.CollectCoin(coinValue);
 
 			// destroy the coin
-			DestroyObject(this.gameObject);
+			Object.Destroy(gameObject);
 		}
 	}
 

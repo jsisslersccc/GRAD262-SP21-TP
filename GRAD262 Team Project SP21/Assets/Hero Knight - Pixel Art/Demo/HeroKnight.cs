@@ -24,6 +24,8 @@ public class HeroKnight : MonoBehaviour {
     private float               m_delayToIdle = 0.0f;
 
     public bool attacking = false;
+    public bool canDoubleJump = false;
+    public float doubleJumpExpiry = 0;
 
 
     // Use this for initialization
@@ -147,10 +149,16 @@ public class HeroKnight : MonoBehaviour {
             m_animator.SetBool("Grounded", m_grounded);
             m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);
             m_groundSensor.Disable(0.2f);
+            canDoubleJump = true;
+        }
+        else if (Input.GetKeyDown("space") && doubleJumpExpiry > Time.fixedTime && canDoubleJump)
+        {
+            m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);
+            canDoubleJump = false;
         }
 
         //Run
-        else if (Mathf.Abs(inputX) > Mathf.Epsilon)
+                else if (Mathf.Abs(inputX) > Mathf.Epsilon)
         {
             // Reset timer
             m_delayToIdle = 0.05f;
@@ -193,8 +201,9 @@ public class HeroKnight : MonoBehaviour {
         }
     }
 
-    public void DoubleJump(float duation)
+    public void DoubleJump(float duration)
     {
         Debug.Log("DoubleJump");
+        doubleJumpExpiry = Time.fixedTime + duration;
     }
 }

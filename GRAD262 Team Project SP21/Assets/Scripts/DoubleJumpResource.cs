@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoubleJumpResource : Resource
 {
     public HeroKnight player;
-    public float duration = 10f;
+    public float duration = 60f;
 
     public override bool ActivateResource()
     {
