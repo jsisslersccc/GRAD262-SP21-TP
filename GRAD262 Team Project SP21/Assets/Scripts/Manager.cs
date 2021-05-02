@@ -18,7 +18,7 @@ public class Manager : MonoBehaviour
     void Start()
     {
         UICoins.text = "0";
-        UIHealth.text = "1";
+        UIHealth.text = "0";
         gm = this;
     }
 
@@ -40,25 +40,7 @@ public class Manager : MonoBehaviour
     {
         //PlaySound(coinSFX);
 
-        if (gm) // add the points through the game manager, if it is available
-            gm.AddCoins(amount);
-    }
-
-    void AddHearts(int amount)
-    {
-        // increase score
-        hearts += amount;
-
-        // update UI
-        UIHealth.text = hearts.ToString();
-
-    }
-    public void CollectHeart(int amount)
-    {
-        //PlaySound(coinSFX);
-
-        if (gm) // add the points through the game manager, if it is available
-            gm.AddHearts(amount);
+        gm.AddCoins(amount);
     }
 
     public bool checkCoins(int amount)
@@ -76,5 +58,7 @@ public class Manager : MonoBehaviour
     public void withdrawCoin(int amount)
     {
         coins -= amount;
+
+        UICoins.text = coins.ToString();
     }
 }

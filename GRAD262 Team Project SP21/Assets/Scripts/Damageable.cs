@@ -4,18 +4,7 @@ using UnityEngine;
 
 public class Damageable : MonoBehaviour
 {
-    public int healthPoints = 5;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int healthPoints = 0;
 
     public void takeDamage()
     {
@@ -25,7 +14,7 @@ public class Damageable : MonoBehaviour
 
             if (healthPoints <= 0)
             {
-                StartCoroutine(DIE()); 
+                DIE(); 
             }
         }
     }
@@ -35,13 +24,9 @@ public class Damageable : MonoBehaviour
         healthPoints += 1;
     }
 
-    IEnumerator DIE()
+    void DIE()
     {
         Animator death = GetComponent<Animator>();
-
         death.SetTrigger("Death");
-        yield return new WaitForSeconds(2);
-        Destroy(gameObject);
-
     }
 }

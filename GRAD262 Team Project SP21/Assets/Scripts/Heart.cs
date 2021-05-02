@@ -23,8 +23,6 @@ public class Heart : MonoBehaviour
                 Instantiate(explosion, transform.position, transform.rotation);
             }
 
-            // do the player collect coin thing
-            Manager.gm.CollectHeart(heartValue);
             other.gameObject.GetComponent<Damageable>().gainHealth();
 
             // destroy the coin

@@ -21,6 +21,9 @@ public class EnemyKnight : MonoBehaviour
     public bool inPursueVicinity = false;
     public bool playerBetweenWaypoints = false;
     public bool playerDead = false;
+    public bool onSameGround = false;
+    public float delayBetweenAttacks = 1;
+    public float timeUntilNextAttack = 0;
 
     private Animator animator;
     private Rigidbody2D body;
@@ -36,14 +39,18 @@ public class EnemyKnight : MonoBehaviour
 
     void Update()
     {
+        if (GetComponent<Damageable>().healthPoints <= 0)
+            return;
+
+        onSameGround = Math.Abs(player.transform.position.y - transform.position.y) < 0.1f;
         playerBetweenWaypoints = waypoints.Length == 2 
             && waypoints[0].transform.position.x < waypoints[1].transform.position.x
             && waypoints[0].transform.position.x < player.transform.position.x
             && player.transform.position.x < waypoints[1].transform.position.x;
         playerDead = player.GetComponent<Damageable>().healthPoints <= 0;
 
-        inAttackVicinity = playerBetweenWaypoints && Vector3.Distance(player.transform.position, transform.position) < attackVicinityThreshold;
-        inPursueVicinity = playerBetweenWaypoints && Vector3.Distance(player.transform.position, transform.position) < pursueVicinityThreshold;
+        inAttackVicinity = onSameGround && playerBetweenWaypoints && Vector3.Distance(player.transform.position, transform.position) < attackVicinityThreshold;
+        inPursueVicinity = onSameGround && playerBetweenWaypoints && Vector3.Distance(player.transform.position, transform.position) < pursueVicinityThreshold;
 
         //Check if character just landed on the ground
         if (!isGrounded && groundSensor.State())
@@ -65,8 +72,8 @@ public class EnemyKnight : MonoBehaviour
             {
                 if (player.attacking)
                     BeingAttacked();
-                else
-                    StartCoroutine(Attack());
+                else if (timeUntilNextAttack < Time.fixedTime)
+                    Attack();
             }
             else if (inPursueVicinity)
                 Pursue();
@@ -80,16 +87,13 @@ public class EnemyKnight : MonoBehaviour
         GetComponent<Damageable>().takeDamage();
     }
 
-    IEnumerator Attack()
+    void Attack()
     {
         body.velocity = new Vector2(0, 0);
         animator.SetInteger("AnimState", 0);
-        yield return new WaitForSeconds(5);
-        if (inAttackVicinity)
-        {
-            animator.SetTrigger("Attack1");
-            player.GetComponent<Damageable>().takeDamage();
-        }
+        animator.SetTrigger("Attack1");
+        player.GetComponent<Damageable>().takeDamage();
+        timeUntilNextAttack = Time.fixedTime + delayBetweenAttacks;
     }
 
     void Pursue()
