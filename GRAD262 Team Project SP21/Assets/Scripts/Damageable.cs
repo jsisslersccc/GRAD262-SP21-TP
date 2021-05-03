@@ -28,5 +28,10 @@ public class Damageable : MonoBehaviour
     {
         Animator death = GetComponent<Animator>();
         death.SetTrigger("Death");
+
+        if (tag.Equals("Player"))
+        {
+            Manager.gm.LoadStartScene();
+        }
     }
 }

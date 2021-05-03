@@ -61,4 +61,26 @@ public class Manager : MonoBehaviour
 
         UICoins.text = coins.ToString();
     }
+
+    public void LoadStartScene()
+    {
+        StartCoroutine(LoanStartSceneWithDelay(2f));
+    }
+
+    IEnumerator LoanStartSceneWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        GetComponent<BuildOrderSceneManager>().LoadStartScene();
+    }
+
+    public void LoadNextScene()
+    {
+        StartCoroutine(LoanNextSceneWithDelay(1f));
+    }
+
+    IEnumerator LoanNextSceneWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        GetComponent<BuildOrderSceneManager>().LoadNextScene();
+    }
 }
