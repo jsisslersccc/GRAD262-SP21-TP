@@ -1,22 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Resource : MonoBehaviour
 {
     public int cost = 1;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -33,5 +22,25 @@ public class Resource : MonoBehaviour
     virtual public bool ActivateResource()
     {
         return false;
-    } 
+    }
+
+    public static EnemyKnight FindEnemyClosestToPlayer()
+    {
+        HeroKnight player = FindObjectOfType<HeroKnight>();
+        EnemyKnight[] enemies = FindObjectsOfType<EnemyKnight>();
+        EnemyKnight closest = null;
+        float minDistance = 0;
+
+        foreach (EnemyKnight enemy in enemies) {
+            float distance = Vector2.Distance(player.transform.position, enemy.transform.position);
+
+            if (closest == null || distance < minDistance)
+            {
+                closest = enemy;
+                minDistance = distance;
+            }
+        }
+
+        return closest;
+    }
 }

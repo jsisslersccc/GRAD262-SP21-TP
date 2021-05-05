@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class SlimeGelResource : Resource
 {
-    public EnemyKnight enemy;
-    public HeroKnight player;
     public float minDistanceToSlime = 5f;
 
     public override bool ActivateResource()
     {
+        HeroKnight player = FindObjectOfType<HeroKnight>();
+        EnemyKnight enemy = FindEnemyClosestToPlayer();
+
         if (enemy && player && Vector2.Distance(enemy.transform.position, player.transform.position) <= minDistanceToSlime)
         {
             gameObject.SetActive(true);
-            StartCoroutine(SlimeEnemy());
+            StartCoroutine(SlimeEnemy(enemy));
             return true;
         }
+
         return false;
     }
 
-    IEnumerator SlimeEnemy()
+    IEnumerator SlimeEnemy(EnemyKnight enemy)
     {
         gameObject.transform.position = enemy.transform.position;
         Destroy(enemy.gameObject);
