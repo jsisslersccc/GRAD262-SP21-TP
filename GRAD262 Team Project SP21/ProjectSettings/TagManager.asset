@@ -62,3 +62,9 @@ TagManager:
   - name: HidePlayer
     uniqueID: 3431599907
     locked: 0
+  - name: Windows
+    uniqueID: 2402532711
+    locked: 0
+  - name: Transition
+    uniqueID: 875927927
+    locked: 0
