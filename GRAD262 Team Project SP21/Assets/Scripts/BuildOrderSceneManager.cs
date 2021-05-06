@@ -23,6 +23,11 @@ public class BuildOrderSceneManager : MonoBehaviour
         }
     }
 
+    public void LoadCurrentScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void LoadEndScene()
     {
         SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 1);

@@ -43,4 +43,25 @@ public class Resource : MonoBehaviour
 
         return closest;
     }
+
+    public static SceneGateway FindSceneGatewayClosestToPlayer()
+    {
+        HeroKnight player = FindObjectOfType<HeroKnight>();
+        SceneGateway[] Gateways = FindObjectsOfType<SceneGateway>();
+        SceneGateway closest = null;
+        float minDistance = 0;
+
+        foreach (SceneGateway Gateway in Gateways)
+        {
+            float distance = Vector2.Distance(player.transform.position, Gateway.transform.position);
+
+            if (closest == null || distance < minDistance)
+            {
+                closest = Gateway;
+                minDistance = distance;
+            }
+        }
+
+        return closest;
+    }
 }
