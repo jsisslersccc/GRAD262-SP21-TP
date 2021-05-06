@@ -83,4 +83,15 @@ public class Manager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         GetComponent<BuildOrderSceneManager>().LoadNextScene();
     }
+
+    public void ReloadCurrentScene()
+    {
+        StartCoroutine(ReloadCurrentSceneWithDelay(2f));
+    }
+
+    IEnumerator ReloadCurrentSceneWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        GetComponent<BuildOrderSceneManager>().LoadCurrentScene();
+    }
 }
