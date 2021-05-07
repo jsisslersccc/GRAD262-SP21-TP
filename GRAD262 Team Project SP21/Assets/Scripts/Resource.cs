@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class Resource : MonoBehaviour
 {
     public int cost = 1;
+    public Text descriptionText;
+    public string description = "Thouest instruction have not!";
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -63,5 +65,15 @@ public class Resource : MonoBehaviour
         }
 
         return closest;
+    }
+
+     void OnMouseOver()
+    {
+        descriptionText.text = description;
+    }
+
+    void OnMouseExit()
+    {
+        descriptionText.text = "";
     }
 }

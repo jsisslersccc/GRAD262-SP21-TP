@@ -25,8 +25,10 @@ public class HeroKnight : MonoBehaviour {
 
     public bool attacking = false;
     public bool canDoubleJump = false;
-    public float doubleJumpExpiry = 0;
+    public float doubleJumpExpiry = 60f;
 
+    public float extremeMass = 100;
+    public float extremeMassExpiry = 60f;
 
     // Use this for initialization
     void Start ()
@@ -43,6 +45,9 @@ public class HeroKnight : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        if (Time.fixedTime > extremeMassExpiry)
+            m_body2d.mass = 1;
+
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
 
@@ -203,7 +208,12 @@ public class HeroKnight : MonoBehaviour {
 
     public void DoubleJump(float duration)
     {
-        Debug.Log("DoubleJump");
         doubleJumpExpiry = Time.fixedTime + duration;
+    }
+
+    public void ExtremeMass(float duration)
+    {
+        m_body2d.mass = extremeMass;
+        extremeMassExpiry = Time.fixedTime + duration;
     }
 }
