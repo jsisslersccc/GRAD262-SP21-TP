@@ -34495,7 +34495,7 @@ MonoBehaviour:
   m_ScreenY: 0.5
   m_CameraDistance: 10
   m_DeadZoneWidth: 0
-  m_DeadZoneHeight: 2
+  m_DeadZoneHeight: 1
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.8
@@ -61138,7 +61138,7 @@ MonoBehaviour:
   minSpawnDelay: 1
   maxSpawnDelay: 5
   nextSpawnTime: 0
-  maxQueueSize: 100
+  maxQueueSize: 500
 --- !u!1 &1596398162
 GameObject:
   m_ObjectHideFlags: 0
@@ -62951,7 +62951,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -9.722135}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -62962,7 +62962,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 500, y: 1}
+  m_Size: {x: 500, y: 7.325245}
   m_EdgeRadius: 0
 --- !u!4 &1648595240
 Transform:
