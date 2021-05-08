@@ -5,6 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class BuildOrderSceneManager : MonoBehaviour
 {
+    public bool splashScreen = false;
+    public float splashScreenPause = 5f;
+
+    void Start()
+    {
+        if (splashScreen)
+            Invoke("LoadNextScene", splashScreenPause);
+    }
+
     public void LoadStartScene()
     {
         SceneManager.LoadScene(0);

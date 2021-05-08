@@ -39,7 +39,7 @@ public class EnemyKnight : MonoBehaviour
 
     void Update()
     {
-        if (GetComponent<Damageable>().healthPoints <= 0)
+        if (player.GetComponent<Damageable>().healthPoints <= 0 || GetComponent<Damageable>().healthPoints <= 0)
             return;
 
         onSameGround = Math.Abs(player.transform.position.y - transform.position.y) < 0.1f;

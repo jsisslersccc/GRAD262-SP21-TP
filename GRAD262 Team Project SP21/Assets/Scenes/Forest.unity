@@ -32169,7 +32169,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 638405978, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: healthPoints
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6323719953710832613, guid: a4b4a6d32bcb19248a754d6602ffc7e4,
         type: 3}
