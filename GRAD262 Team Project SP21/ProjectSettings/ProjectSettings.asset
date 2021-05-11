@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Sussex County Community College
-  productName: 'Knight Moves: GRAD262 SP21 Team Project'
+  productName: Knight Moves
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -39,11 +39,7 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos:
-  - logo: {fileID: 21300000, guid: 34119f08f37d8424f93b42b2e2690a21, type: 3}
-    duration: 2
-  - logo: {fileID: 21300000, guid: ef02ad3cd347f2b469ec16c79650dcfb, type: 3}
-    duration: 2
+  m_SplashScreenLogos: []
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1024
@@ -149,7 +145,8 @@ PlayerSettings:
   resolutionScalingMode: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Standalone: com.SussexCountyCommunityCollege.KnightMovesGRAD262SP21TeamProject
   buildNumber:
     Standalone: 0
     iPhone: 0
