@@ -15,6 +15,10 @@ public class Manager : MonoBehaviour
 
     public Text UICoins;
     public Text UIHealth;
+
+    public AudioClip coinPickup;
+    
+
     void Start()
     {
         UICoins.text = "0";
@@ -39,6 +43,8 @@ public class Manager : MonoBehaviour
     public void CollectCoin(int amount)
     {
         //PlaySound(coinSFX);
+
+        GetComponent<AudioSource>().PlayOneShot(coinPickup);
 
         gm.AddCoins(amount);
     }

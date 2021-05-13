@@ -6,6 +6,9 @@ public class Damageable : MonoBehaviour
 {
     public int healthPoints = 0;
 
+    public AudioClip healthPickup;
+    public AudioClip playerDeath;
+
     public void takeDamage()
     {
         if (healthPoints > 0)
@@ -22,12 +25,16 @@ public class Damageable : MonoBehaviour
     public void gainHealth()
     {
         healthPoints += 1;
+
+        GetComponent<AudioSource>().PlayOneShot(healthPickup);
     }
 
     void DIE()
     {
         Animator death = GetComponent<Animator>();
         death.SetTrigger("Death");
+
+        GetComponent<AudioSource>().PlayOneShot(playerDeath);
 
         if (tag.Equals("Player"))
         {

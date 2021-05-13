@@ -5,6 +5,8 @@ using UnityEngine;
 public class DeathFall : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    public AudioClip playerDeath;
     void Start()
     {
 
@@ -20,8 +22,12 @@ public class DeathFall : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            GetComponent<AudioSource>().PlayOneShot(playerDeath);
+
             Animator animator = collision.gameObject.GetComponent<Animator>();
             animator.SetTrigger("Death");
+
+
             Manager.gm.ReloadCurrentScene();
         }
     }

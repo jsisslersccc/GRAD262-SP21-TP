@@ -11,19 +11,26 @@ public class Coin : MonoBehaviour {
 	// then take the coin
 	void OnTriggerEnter2D (Collider2D other)
 	{
+
+        
+
+        
 		if ((other.tag == "Player" ) && (!taken))
 		{
 			// mark as taken so doesn't get taken multiple times
 			taken=true;
 
-			// if explosion prefab is provide, then instantiate it
-			if (explosion)
+            
+
+            // if explosion prefab is provide, then instantiate it
+            if (explosion)
 			{
 				Instantiate(explosion,transform.position,transform.rotation);
 			}
 
 			// do the player collect coin thing
 			Manager.gm.CollectCoin(coinValue);
+            
 
 			// destroy the coin
 			Object.Destroy(gameObject);
